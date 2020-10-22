@@ -4,8 +4,8 @@ from bs4 import BeautifulSoup
 user_budget = int(input("Enter your budget: "))
 
 content = requests.get("https://www.johnlewis.com/browse/home-garden/plants-planting/pots-planters/_/N-5urc").content
-soup = BeautifulSoup(content)
-element = soup.findAll("span", {"class": "product-card__price-span", "data-test": "product-card__price product-card__price--current"})
+soup = BeautifulSoup(content, features="html.parser")
+element = soup.find("span", {"class": "product-card__price-span", "data-test": "product-card__price product-card__price--current"})
 price = element.text.strip()
 price_no_currency = price[1:]
 price_float = float(price_no_currency)
